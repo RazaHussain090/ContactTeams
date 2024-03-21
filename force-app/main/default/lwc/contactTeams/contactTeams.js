@@ -57,28 +57,28 @@ export default class ContactTeams extends LightningElement {
 
     updateContactTeams(){
         getContactShares({contactId: this.contactId})
-                .then((result) => {
-                    console.log('data initiated');
-                    this.schema = result;
-                    console.log(JSON.stringify(result));
-                    let length = 1;
-                    if(result){
-                        const newContacts = result.map(contact => ({
-                            Id: contact.Id,
-                            RId: String(length++),
-                            User: contact.User__c,
-                            Role: contact.Role__c,
-                            Access: contact.Access__c // Default or derived value
-                        }));
-                        this.contacts = newContacts;
-                        console.log('contacts '+JSON.stringify(this.contacts));
-                    }
-                    
-            })
-            .catch((error) => {
-                error = error;
-                console.log('error '+error);
-            });
+        .then((result) => {
+            console.log('data initiated');
+            this.schema = result;
+            console.log(JSON.stringify(result));
+            let length = 1;
+            if(result){
+                const newContacts = result.map(contact => ({
+                    Id: contact.Id,
+                    RId: String(length++),
+                    User: contact.User__c,
+                    Role: contact.Role__c,
+                    Access: contact.Access__c // Default or derived value
+                }));
+                this.contacts = newContacts;
+                console.log('contacts '+JSON.stringify(this.contacts));
+            }
+            
+        })
+        .catch((error) => {
+            error = error;
+            console.log('error '+error);
+        });
     }
 
     addContact() {
@@ -108,13 +108,12 @@ export default class ContactTeams extends LightningElement {
         const contactId = event.target.dataset.id;
         const newUser = event.detail.value;
         
-        // Find the contact by ID and update its role
         const contact = this.contacts.find(contact => contact.Id === contactId);
         if (contact) {
             contact.User = newUser;
         }
         console.log(JSON.stringify(this.contacts));
-        // To ensure reactivity, re-assign the contacts array
+        
         this.contacts = [...this.contacts];
     }
 
@@ -122,26 +121,24 @@ export default class ContactTeams extends LightningElement {
         const contactId = event.target.dataset.id;
         const newRole = event.detail.value;
         
-        // Find the contact by ID and update its role
         const contact = this.contacts.find(contact => contact.Id === contactId);
         if (contact) {
             contact.Role = newRole;
         }
         console.log(JSON.stringify(this.contacts));
-        // To ensure reactivity, re-assign the contacts array
+        
         this.contacts = [...this.contacts];
     }
     handleAccessChange(event) {
         const contactId = event.target.dataset.id;
         const newAccess = event.detail.value;
         
-        // Find the contact by ID and update its role
         const contact = this.contacts.find(contact => contact.Id === contactId);
         if (contact) {
             contact.Access = newAccess;
         }
         console.log(JSON.stringify(this.contacts));
-        // To ensure reactivity, re-assign the contacts array
+        
         this.contacts = [...this.contacts];
     }
 
