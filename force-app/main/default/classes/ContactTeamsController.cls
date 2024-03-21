@@ -1,6 +1,6 @@
 public with sharing class ContactTeamsController {
     
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static List<Contact_Team__c> getContactShares(String contactId) {
         return [
             SELECT Id, Contact__c, User__c, Access__c, Role__c
