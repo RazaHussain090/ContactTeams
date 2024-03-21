@@ -4,15 +4,14 @@ public with sharing class ContactTeamTriggerHandler {
         if(triggerNew.isEmpty() && triggerMap.isEmpty()) {
             return;
         }
-        List<ContactShare> contactShares = new List<ContactShares>();
+        List<ContactShare> contactShares = new List<ContactShare>();
         for(Contact_Team__c contactTeam : TriggerNew){
             ContactShare contactShare = new ContactShare(
-                ContactId = contactId,
-                UserOrGroupId = userId,
-                ContactAccessLevel = accessLevel
+                ContactId = contactTeam.Contact__c,
+                UserOrGroupId = contactTeam.User__c,
+                ContactAccessLevel = contactTeam.Access__c
             );
             contactShares.add(contactShare);
-            
         }
         if(!contactShares.isEmpty()){
             insert contactShares;
@@ -23,12 +22,12 @@ public with sharing class ContactTeamTriggerHandler {
         if(triggerNew.isEmpty() && triggerMap.isEmpty()) {
             return;
         }
-        List<ContactShare> contactShares = new List<ContactShares>();
+        List<ContactShare> contactShares = new List<ContactShare>();
         for(Contact_Team__c contactTeam : TriggerNew){
             ContactShare contactShare = new ContactShare(
-                ContactId = contactId,
-                UserOrGroupId = userId,
-                ContactAccessLevel = accessLevel
+                ContactId = contactTeam.Contact__c,
+                UserOrGroupId = contactTeam.User__c,
+                ContactAccessLevel = contactTeam.Access__c
             );
             contactShares.add(contactShare);
             
