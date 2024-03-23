@@ -14,14 +14,14 @@
                     <template for:each={contacts} for:item="contact">
                         <tr key={contact.Id}>
                             <td>
-                                <lightning-combobox 
-                                    name="user" 
-                                    label="User" 
-                                    value={contact.User} 
-                                    options={userOptions}
-                                    onchange={handleUserChange} 
+                                <lightning-record-picker
+                                    label="User"
+                                    placeholder="Search..."
+                                    object-api-name="User"
+                                    value={contact.User}
+                                    onchange={handleUserChange}
                                     data-id={contact.Id}>
-                                </lightning-combobox>
+                                ></lightning-record-picker>
                             </td>
                             <td>
                                 <lightning-combobox 
