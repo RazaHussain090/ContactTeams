@@ -1,5 +1,5 @@
 import { LightningElement, track, api, wire } from 'lwc';
-import { refreshApex } from '@salesforce/apex';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { CurrentPageReference } from 'lightning/navigation';
 import saveContactTeams from '@salesforce/apex/ContactTeamsController.saveContactTeams';
 import getContactShares from '@salesforce/apex/ContactTeamsController.getContactShares';
@@ -17,7 +17,7 @@ export default class ContactTeams extends LightningElement {
     @wire(CurrentPageReference)
     pageRef;
 
-    /*@wire(getSchemaData)
+    @wire(getSchemaData)
     wiredSchema({ error, data }) {
         if (data) {
             this.schema = data;
@@ -29,13 +29,13 @@ export default class ContactTeams extends LightningElement {
             // Handle errors here
             console.error(error);
         }
-    }*/
+    }
     
 
     connectedCallback(){
         this.contactId = this.pageRef?.state?.c__recordId;
         try{
-            getSchemaData()
+            /*getSchemaData()
                 .then((result) => {
                     console.log('schema initiated');
                     this.schema = result;
@@ -48,7 +48,7 @@ export default class ContactTeams extends LightningElement {
                 .catch((error) => {
                     error = error;
                     console.log('error '+error);
-                });
+                });*/
                 this.updateContactTeams();
         }catch(e){
             console.log('error '+e);
@@ -63,14 +63,14 @@ export default class ContactTeams extends LightningElement {
             console.log(JSON.stringify(result));
             let length = 1;
             if(result){
-                const newContacts = result.map(contact => ({
-                    Id: contact.Id,
+                const newContactTeams = result.map(contactTeams => ({
+                    Id: contactTeams.Id,
                     RId: String(length++),
-                    User: contact.User__c,
-                    Role: contact.Role__c,
-                    Access: contact.Access__c // Default or derived value
+                    User: contactTeams.User__c,
+                    Role: contactTeams.Role__c,
+                    Access: contactTeams.Access__c
                 }));
-                this.contacts = newContacts;
+                this.contacts = newContactTeams;
                 console.log('contacts '+JSON.stringify(this.contacts));
             }
             
@@ -106,8 +106,10 @@ export default class ContactTeams extends LightningElement {
     
     handleUserChange(event) {
         const contactId = event.target.dataset.id;
-        const newUser = event.detail.value;
+        const newUser = event.detail.recordId;
         
+        console.log('Selected record:' +event.detail.recordId);
+
         const contact = this.contacts.find(contact => contact.Id === contactId);
         if (contact) {
             contact.User = newUser;
@@ -146,10 +148,24 @@ export default class ContactTeams extends LightningElement {
         saveContactTeams({ contactTeams: JSON.stringify(this.contacts), contactId: this.contactId })
         .then((result) => {
             console.log('Successfully Saved');
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Success',
+                    message: 'Contact Team Members saved successfully',
+                    variant: 'success'
+                })
+            );
             this.updateContactTeams();
         })
         .catch((error) => {
             error = error;
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Failure',
+                    message: 'Contact Team Members does not saved succesffuly',
+                    variant: 'error'
+                })
+            );
             console.log('error '+JSON.stringify(error));
         });
     }
