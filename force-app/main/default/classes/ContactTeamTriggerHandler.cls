@@ -24,11 +24,10 @@ public without sharing class ContactTeamTriggerHandler {
             return;
         }
         Set<Id> contactIds = new Set<Id>();
-        for (Contact_Team__c contactTeam : triggerNew){
+        for (Contact_Team__c contactTeam : triggerNew) {
             contactIds.add(contactTeam.Contact__c); 
         }
-        if(contactIds.isEmpty())
-        {
+        if(contactIds.isEmpty()) {
             return;
         }
 
