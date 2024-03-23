@@ -79,13 +79,6 @@ public with sharing class ContactTeamsController {
         }
     }
 
-    public static void shareContactWithUser(String contactId, String userId, String accessLevel) {
-        ContactShare contactShare = new ContactShare();
-        contactShare.ContactId = contactId;
-        contactShare.UserOrGroupId = userId;
-        contactShare.ContactAccessLevel = accessLevel;
-        insert contactShare;
-    }
 
     public class ContactInfo {
         public String Id;
