@@ -6,7 +6,7 @@ import getContactShares from '@salesforce/apex/ContactTeamsController.getContact
 import getSchemaData from '@salesforce/apex/ContactTeamsController.getSchemaData';
 import deleteContactShares from '@salesforce/apex/ContactTeamsController.deleteContactShares';
 export default class ContactTeams extends LightningElement {
-    contactId;
+    @track contactId;
     @track contacts;
 
     roleOptions;
@@ -15,7 +15,13 @@ export default class ContactTeams extends LightningElement {
     schema;
 
     @wire(CurrentPageReference)
-    pageRef;
+    getStateParameters(currentPageReference) {
+        if (currentPageReference) {
+            console.log('contactId '+currentPageReference.state?.c__recordId);
+            this.contactId = currentPageReference.state?.c__recordId;
+            this.updateContactTeams();
+        }
+    }
 
     @wire(getSchemaData)
     wiredSchema({ error, data }) {
@@ -33,7 +39,7 @@ export default class ContactTeams extends LightningElement {
     
 
     connectedCallback(){
-        this.contactId = this.pageRef?.state?.c__recordId;
+        console.log('contactId' +this.contactId);
         try{
             /*getSchemaData()
                 .then((result) => {
@@ -162,7 +168,7 @@ export default class ContactTeams extends LightningElement {
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Failure',
-                    message: 'Contact Team Members does not saved succesffuly',
+                    message: 'Contact Team Members does not saved succesfully',
                     variant: 'error'
                 })
             );
