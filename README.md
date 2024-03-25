@@ -18,7 +18,6 @@ List any prerequisites needed to deploy the project. This typically includes:
 
 - **Salesforce CLI:** Instructions for installation can be found [here](https://developer.salesforce.com/tools/sfdxcli).
 - **A Salesforce Developer Edition Org or a Trailhead Playground:** Needed to create Scratch Orgs and for deployment.
-- **Any other dependencies** specific to your project.
 
 ## Installation Instructions
 
