@@ -7,7 +7,7 @@ To provide a custom solution for the Account Teams process inside Salesforce for
 ### Features
 
 - **Feature 1:** Description
-  ![example1](/example1.png)
+  ![example1](example1.png)
 - **Feature 2:** Description
 - **Feature 3:** Description
 
