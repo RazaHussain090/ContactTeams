@@ -7,8 +7,9 @@ To provide a custom solution for the Account Teams process inside Salesforce for
 ### Features
 
 - **Feature 1:** Create a UI for handling the team records.
-  ![example1](lwc-ui.png)
-- **Feature 2:** Description
+![lwc-ui](lwc-ui.png)
+- **Feature 2:** Override the New button with Aura wrapped LWC Component 
+![related-list-override](related-list-override.png)
 - **Feature 3:** Description
 
 ## Prerequisites
