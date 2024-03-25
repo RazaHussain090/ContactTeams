@@ -10,7 +10,7 @@ To provide a custom solution for the Account Teams process inside Salesforce for
 ![lwc-ui](lwc-ui.png)
 - **Feature 2:** Override the New button with Aura wrapped LWC Component. 
 ![related-list-override](related-list-override.png)
-- **Feature 3:** Share the contact records with the selected user effectlessly using the apex sharing.
+- **Feature 3:** Share the contact records with the selected user effortlessly using the apex sharing.
 
 ## Prerequisites
 
