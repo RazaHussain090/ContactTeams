@@ -8,9 +8,9 @@ To provide a custom solution for the Account Teams process inside Salesforce for
 
 - **Feature 1:** Create a UI for handling the team records.
 ![lwc-ui](lwc-ui.png)
-- **Feature 2:** Override the New button with Aura wrapped LWC Component 
+- **Feature 2:** Override the New button with Aura wrapped LWC Component. 
 ![related-list-override](related-list-override.png)
-- **Feature 3:** Description
+- **Feature 3:** Share the contact records with the selected user effectlessly using the apex sharing.
 
 ## Prerequisites
 
@@ -24,23 +24,23 @@ List any prerequisites needed to deploy the project. This typically includes:
 
 ### Step 1: Clone the Repository
 
-Provide instructions on how to clone your project repository. 
+Clone the project repository. 
 
 ```
 git clone https://github.com/RazaHussain090/ContactTeams.git
 cd ContactTeams
 ```
 ### Step 2: Log in to Salesforce
-Explain how to log in to Salesforce using the CLI.
+Log in to Salesforce using the CLI.
 
 ```
-sfdx auth:web:login -d -a DevHub
+sfdx auth:web:login -d -a <OrgsName>
 ```
 -d sets the logged-in org as the default Dev Hub.  
 -a gives an alias to the Dev Hub org for easier reference.  
 
 ### Step 3: Create a Scratch Org (Optional)
-Instruct how to create a Scratch Org and provide a command example.
+Create a Scratch Org if you want to deploy the code on to the scratch org but you must have a devhub connected.
 
 ```
 sfdx force:org:create -s -f config/project-scratch-def.json -a <scratch-org-alias>
